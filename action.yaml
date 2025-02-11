@@ -42,7 +42,7 @@ runs:
         for RUN_ID in $RUN_IDS; do
           ARTIFACT_IDS=$(gh api repos/$GITHUB_REPO/actions/runs/$RUN_ID/artifacts | jq '.artifacts | map(.id) | .[]')
           for ARTIFACT_ID in $ARTIFACT_IDS; do
-            ARTIFACT_URL="repos/$GITHUB_REPO/actions/artifacts/$ARTIFACT_ID"
+            ARTIFACT_URL="repos/$GITHUB_REPOSITORY_OWNER/$GITHUB_REPO/actions/artifacts/$ARTIFACT_ID"
             if [ "$DRY_RUN" == "true" ]; then
               echo "! Dry run ! \"gh api -X DELETE $ARTIFACT_URL\""
             else
